@@ -14,13 +14,9 @@ const Header = () => {
 
     const token = useSelector(selectCurrendToken);
     
-
     const [isConnected, setIsConnected] = useState(true);
-
      const firstName = useSelector(selectCurrentFirstname);
-
      const dispatch = useDispatch();
-
      const handleLogout = () => {
             setIsConnected(false);
             dispatch(logOut());
@@ -49,11 +45,11 @@ const Header = () => {
                     {isConnected ? 
                     (
                         <>
-                            <NavLink className="header-nav-item header-nav-profile" to="user">
+                            <NavLink className="main-nav-item header-nav-profile" to="user">
                             <i className="fa fa-user-circle header-nav-signin-logo" />
                                 {firstName}
                             </NavLink>
-                            <div className="header-nav-item header-nav-signout" onClick={handleLogout}>
+                            <div className="main-nav-item header-nav-signout" onClick={handleLogout}>
                                 <i className="fa-solid fa-right-from-bracket header-nav-signout-logo" />
                                 Sign Out
                             </div>
@@ -61,7 +57,7 @@ const Header = () => {
                     )
                      : 
                     (
-                        <NavLink className="header-nav-item" to="signin">
+                        <NavLink className="main-nav-item" to="signin">
                             <i className="fa fa-user-circle header-nav-signin-logo" />
                             Sign In
                         </NavLink>

@@ -1,5 +1,6 @@
+// FormUserName.jsx
 import { useDispatch, useSelector} from 'react-redux'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 import {  useUpdateUserMutation} from '../../features/User/UserApiSlice.js'
@@ -13,7 +14,12 @@ const FormUserName = ({setIsOpen}) => {
     const dispatch = useDispatch();
 
     const [ updateUser ] = useUpdateUserMutation();
-    const [updatedUsername, setUpdatedUsername] = useState(username);
+    const [updatedUsername, setUpdatedUsername] = useState();
+
+
+    useEffect(() => {
+        setUpdatedUsername(username ? username : '');
+    }, [username]);
 
 
     const handleSubmit = async (e) => { 
@@ -44,7 +50,8 @@ const FormUserName = ({setIsOpen}) => {
                             id="username"
                             className='user_form-input'
                             onChange={(e) => setUpdatedUsername(e.target.value)}
-                            value={updatedUsername} />
+                            defaultValue={updatedUsername ? updatedUsername : username}
+                             />
                 </div>
                 <div className="input-wrapper">
                     <label htmlFor="username" className='user_form-label'>
