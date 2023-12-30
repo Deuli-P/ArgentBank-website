@@ -26,11 +26,8 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
       console.log("API]refresh result : ", refreshResult.data.token);
   
       if (refreshResult?.data) {
-        // store the new token
         console.log("API]Nouveau token: ", refreshResult?.data?.token);
         api.dispatch(setNewToken({ token: refreshResult?.data?.token }));
-  
-        // retry original query with new access token
         result = await baseQuery(args, api, extraOptions);
         console.log(result);
       } else {
